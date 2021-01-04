@@ -17,8 +17,8 @@ jobs:
           TZ: Asia/Tokyo
     steps:
       - checkout
-      - restore_npm_cache:
-      - restore_npm_cache:
+      - restore_yarn_cache:
+      - restore_yarn_cache:
           path: subproject1
       - restore_cache:
           key: yarn-packages-v1.0-{{ checksum "yarn.lock" }}
