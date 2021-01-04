@@ -18,7 +18,7 @@ jobs:
     steps:
       - checkout
       - restore_yarn_cache:
-          pathy: .
+          path: .
       - restore_yarn_cache:
           path: subproject1
       - restore_cache:
