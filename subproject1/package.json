@@ -1,0 +1,8 @@
+{
+  "name": "subproject1",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "live-server": "^1.2.1"
+  }
+}
