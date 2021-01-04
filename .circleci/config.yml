@@ -8,6 +8,12 @@ jobs:
           TZ: Asia/Tokyo
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - yarn-packages-v1.0-{{ checksum "yarn.lock" }}
+      - run:
+          name: inspect cache
+          command: ls -lad node_modules
       - run:
           name: yarn install
           command: yarn install
