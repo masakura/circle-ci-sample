@@ -1,6 +1,7 @@
 version: 2.1
+
 jobs:
-  yarn_install:
+  build:
     docker:
       - image: circleci/node:14.15.3
         environment:
