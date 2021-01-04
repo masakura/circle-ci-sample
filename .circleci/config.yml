@@ -7,14 +7,14 @@ commands:
         type: string
     steps:
       - restore_cache:
-          key: yarn-packages-<< parameters.path >>-v1.0-{{ checksum "<< parameters.path >>/yarn.lock" }}
+          key: yarn-packages-<< parameters.path >>-{{ .Environment.CACHE_VERSION }}-{{ checksum "<< parameters.path >>/yarn.lock" }}
   save_yarn_cache:
     parameters:
       path:
         type: string
     steps:
       - save_cache:
-          key: yarn-packages-<< parameters.path >>-v1.0-{{ checksum "<< parameters.path >>/yarn.lock" }}
+          key: yarn-packages-<< parameters.path >>-{{ .Environment.CACHE_VERSION }}-{{ checksum "<< parameters.path >>/yarn.lock" }}
           paths:
             - << parameters.path >>/node_modules
 
