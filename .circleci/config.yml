@@ -11,9 +11,10 @@ jobs:
       - restore_cache:
           keys:
             - yarn-packages-v1.0-{{ checksum "yarn.lock" }}
+            - yarn-packages-subproject1-v1.0-{{ checksum "subproject1/yarn.lock" }}
       - run:
           name: inspect cache
-          command: ls -lad node_modules
+          command: ls -lad node_modules subproject1/node_modules
       - run:
           name: yarn install
           command: yarn install
@@ -21,3 +22,7 @@ jobs:
           key: yarn-packages-v1.0-{{ checksum "yarn.lock" }}
           paths:
             - node_modules
+      - save_cache:
+          key: yarn-packages-subproject1-v1.0-{{ checksum "subproject1/yarn.lock" }}
+          paths:
+            - subproject1/node_modules
