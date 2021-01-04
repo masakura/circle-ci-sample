@@ -9,9 +9,9 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          keys:
-            - yarn-packages-v1.0-{{ checksum "yarn.lock" }}
-            - yarn-packages-subproject1-v1.0-{{ checksum "subproject1/yarn.lock" }}
+          key: yarn-packages-v1.0-{{ checksum "yarn.lock" }}
+      - restore_cache:
+          key: yarn-packages-subproject1-v1.0-{{ checksum "subproject1/yarn.lock" }}
       - run:
           name: inspect cache
           command: ls -lad node_modules subproject1/node_modules || true
