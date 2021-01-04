@@ -1,5 +1,14 @@
 version: 2.1
 
+commands:
+  restore_yarn_cache:
+    parameters:
+      path:
+        type: string
+        default: .
+    steps:
+      - run: echo << parameters.path >>
+
 jobs:
   build:
     docker:
@@ -8,6 +17,9 @@ jobs:
           TZ: Asia/Tokyo
     steps:
       - checkout
+      - restore_npm_cache:
+      - restore_npm_cache:
+          path: subproject1
       - restore_cache:
           key: yarn-packages-v1.0-{{ checksum "yarn.lock" }}
       - restore_cache:
