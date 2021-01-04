@@ -8,6 +8,15 @@ commands:
     steps:
       - restore_cache:
           key: yarn-packages-<< parameters.path >>-v1.0-{{ checksum "<< parameters.path >>/yarn.lock" }}
+  save_yarn_cache:
+    parameters:
+      path:
+        type: string
+    steps:
+      - save_cache:
+          key: yarn-packages-<< parameters.path >>-v1.0-{{ checksum "<< parameters.path >>/yarn.lock" }}
+          paths:
+            - << parameters.path >>/node_modules
 
 jobs:
   build:
@@ -27,11 +36,7 @@ jobs:
       - run:
           name: yarn install
           command: yarn install
-      - save_cache:
-          key: yarn-packages-.-v1.0-{{ checksum "yarn.lock" }}
-          paths:
-            - node_modules
-      - save_cache:
-          key: yarn-packages-subproject1-v1.0-{{ checksum "subproject1/yarn.lock" }}
-          paths:
-            - subproject1/node_modules
+      - save_yarn_cache:
+          path: .
+      - save_yarn_cache:
+          path: subproject1
